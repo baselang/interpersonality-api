@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+<a href="index.html"> Home </a>
+<br></br>
+
+<!-- <div  id="SAMPLEdivID" style="min-width:320px;height:630px;"></div> -->
+<div id="SAMPLEdivID" style="min-width:320px;height:800px;position: relative;"></div>
+<script>
+    Calendly.initInlineWidget({
+        url: 'https://calendly.com/certainty-developer',
+        parentElement: document.getElementById('SAMPLEdivID'),
+        prefill: {
+            name: "Rahul Anand",
+            email: "rahul.anand@certaintyinfotech.com"
+        }         
+   });
+</script>
+</body>
+</html>

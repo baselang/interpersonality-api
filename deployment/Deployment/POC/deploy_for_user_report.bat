@@ -1,0 +1,1 @@
+call deploy_for_profiles_report.bat ProfilesUserProfilesReport Dev

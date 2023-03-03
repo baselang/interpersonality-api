@@ -1,0 +1,19 @@
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+
+            <div align="center" id="msg" role="alert">
+                Error: {{ message }}
+
+            </div>
+        {% else %}
+
+            <div align="center" id="msg" role="alert">
+                {{ message }} <span style="margin: 10px"> </span>
+
+
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+

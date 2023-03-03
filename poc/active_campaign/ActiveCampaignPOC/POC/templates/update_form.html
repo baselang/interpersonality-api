@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Active Campaign POC</title>
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <style type="text/css">
+        #form_data {
+            border: 3px darkgrey solid;
+            border-radius: 5px;
+            box-shadow: 10px 10px 5px #aaaaaa;
+        }
+
+    </style>
+    <script type="text/javascript">
+
+        function myFunction() {
+            document.getElementById("p1").hidden = true;
+            document.getElementById("p2").hidden = true;
+            document.getElementById("p3").hidden = true;
+            document.getElementById("p4").hidden = true;
+        }
+
+        function falseFunction() {
+            document.getElementById("p1").hidden = false;
+            document.getElementById("p2").hidden = false;
+            document.getElementById("p3").hidden = false;
+            document.getElementById("p4").hidden = false;
+        }
+
+        $(document).ready(function () {
+            if ($('#exampleRadios2').is(':checked')) {
+                myFunction();
+            }
+        });
+
+    </script>
+</head>
+<body>
+<br>
+<form action="{% url 'update' %}" method="post">
+    {% csrf_token %}
+    <div class="outer">
+        <div class="row justify-content-center">
+
+            <div class="col-6" id="form_data">
+
+                <br>
+                {% include 'messages.html' %}
+                <br>
+                <div style="text-align: center;"><h2>Contact Details Form</h2></div>
+
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ first_name }}"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ last_name }}"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ email }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select class="form-control" id="gender" name="gender" required>
+                        <option class="text-muted" style="display:none" value="">Please Choose Gender!</option>
+                        {% if gender == 'Male' %}
+                            <option selected>Male</option>
+                            <option>Female</option>
+                        {% else %}
+                            <option>Male</option>
+                            <option selected>Female</option>
+
+                        {% endif %}
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" class="form-control" id="age" name="age" min="0"
+                           max="150" value="{{ age }}" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="language">Language:</label>
+                    <select class="form-control" id="language" name="language" required>
+                        <option class="text-muted" style="display:none" value="">Please Choose Language!</option>
+                        {% if language == 'English' %}
+                            <option selected>English</option>
+                            <option>Spanish</option>
+                        {% else %}
+                            <option>English</option>
+                            <option selected>Spanish</option>
+
+                        {% endif %}
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="style_assignments">All of their own style assignments:</label>
+                    <input type="text" class="form-control" id="style_assignments" name="style_assignments"
+                           placeholder="Eg: 0101,0102" value="{{ style_assignment }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="uid">User ID:</label>
+                    <input type="text" class="form-control" id="uid" value="{{ user_id }}" name="uid" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="compatibility">Number of Compatibility Guides they have Purchased:</label>
+                    <input type="number" class="form-control" id="compatibility" name="compatibility" min="0"
+                           max="500000" value="{{ compatability_guides }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="couples">Number of Couples Guides they have Purchased:</label>
+                    <input type="number" class="form-control" id="couples" name="couples" min="0" max="500000"
+                           value="{{ couples_guides }}"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="product_8_dates">Number of 8 Dates they have purchased:</label>
+                    <input type="number" class="form-control" id="product_8_dates" name="product_8_dates" min="0"
+                           max="500000" value="{{ product_8_dates }}"
+                           required>
+                </div>
+
+                <label for="couples">8 Dates Purchased?</label>
+                <div class="form-check">
+                    {% if is_8_dates == "Yes" %}
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                               value="option1" onclick="falseFunction()" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Yes
+                        </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                                   value="option2" onclick="myFunction()">
+                            <label class="form-check-label" for="exampleRadios2">
+                                No
+                            </label>
+                            {% else %}
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                   value="option1" onclick="falseFunction()">
+                            <label class="form-check-label" for="exampleRadios1">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                               value="option2" onclick="myFunction()" checked>
+                        <label class="form-check-label" for="exampleRadios2">
+                            No
+                        </label>
+                    {% endif %}
+
+
+                    </div>
+                {% if is_8_dates == "Yes" %}
+
+
+                    <div class="form-group" id="p1">
+                        <label for="partners_first_name">Partner's First Name:</label>
+                        <input type="text" class="form-control" id="partners_first_name" required
+                               value="{{ partners_first_name }}"
+                               name="partners_first_name">
+                    </div>
+
+                    <div class="form-group" id="p2">
+                        <label for="partners_gender">Partner's Gender:</label>
+                        <select class="form-control" id="partners_gender" name="partners_gender" required>
+                            <option class="text-muted" style="display:none" value="">Please Choose Gender!</option>
+                            {% if partners_gender == "Male" %}
+
+                                <option selected>Male</option>
+                                <option>Female</option>
+
+                            {% elif partners_gender == "Female" %}
+
+                                <option>Male</option>
+                                <option selected>Female</option>
+                            {% else %}
+                                <option>Male</option>
+                                <option>Female</option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="p3">
+                        <label for="partners_uid">Partner's User ID:</label>
+                        <input type="text" class="form-control" id="partners_uid" name="partners_uid" required
+                               value="{{ partners_user_id }}">
+                    </div>
+
+                    <div class="form-group" id="p4">
+                        <label for="partners_style_assignments">All of their Partner's styles:</label>
+                        <input type="text" class="form-control" id="partners_style_assignments" required
+                               value="{{ partner_style_assignment }}"
+                               name="partners_style_assignments"
+                               placeholder="Eg: 0101,0102">
+                    </div>
+                    <br>
+
+                {% else %}
+
+
+                    <div class="form-group" id="p1">
+                        <label for="partners_first_name">Partner's First Name:</label>
+                        <input type="text" class="form-control" id="partners_first_name"
+                               name="partners_first_name">
+                    </div>
+
+                    <div class="form-group" id="p2">
+                        <label for="partners_gender">Partner's Gender:</label>
+                        <select class="form-control" id="partners_gender" name="partners_gender">
+                            <option class="text-muted" style="display:none" value="">Please Choose Gender!</option>
+
+                            <option>Male</option>
+                            <option>Female</option>
+
+
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="p3">
+                        <label for="partners_uid">Partner's User ID:</label>
+                        <input type="text" class="form-control" id="partners_uid" name="partners_uid" >
+                    </div>
+
+                    <div class="form-group" id="p4">
+                        <label for="partners_style_assignments">All of their Partner's styles:</label>
+                        <input type="text" class="form-control" id="partners_style_assignments"
+                               name="partners_style_assignments"
+                               placeholder="Eg: 0101,0102">
+                    </div>
+                    <br>
+
+
+
+
+                {% endif %}
+
+                {# Hidden Fields #}
+                <input type="text" hidden value="{{ genderFieldValue }}" name="genderFieldValue">
+                <input type="text" hidden value="{{ ageFieldValue }}" name="ageFieldValue">
+                <input type="text" hidden value="{{ languageContactTag }}" name="languageContactTag">
+                <input type="text" hidden value="{{ styleAssignmentContactTag }}" name="styleAssignmentContactTag">
+                <input type="text" hidden value="{{ userIdFieldValue }}" name="userIdFieldValue">
+                <input type="text" hidden value="{{ compatabilityGuidesFieldValue }}"
+                       name="compatabilityGuidesFieldValue">
+                <input type="text" hidden value="{{ couplesGuidesFieldValue }}" name="couplesGuidesFieldValue">
+                <input type="text" hidden value="{{ product8DatesFieldValue }}" name="product8DatesFieldValue">
+                <input type="text" hidden value="{{ partnersFirstNameFieldValue }}" name="partnersFirstNameFieldValue">
+                <input type="text" hidden value="{{ partnersGenderFieldValue }}" name="partnersGenderFieldValue">
+                <input type="text" hidden value="{{ partnersUserIdFieldValue }}" name="partnersUserIdFieldValue">
+                <input type="text" hidden value="{{ partnerStyleAssignmentContactTag }}"
+                       name="partnerStyleAssignmentContactTag">
+                <input type="text" hidden value="{{ contact_id }}" name="contact_id">
+
+
+                <div style="text-align: center;" class="row justify-content-around">
+                    <div class="col-4">
+                        <a href="{% url 'home' %}" class="btn btn-primary rounded-pill col-10">Add New Contact</a>
+                    </div>
+
+
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-success rounded-pill col-10" name="update">Update</button>
+                    </div>
+
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-danger rounded-pill col-10" name="delete">Delete</button>
+                    </div>
+
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</form>
+<br>
+
+
+</body>
+</html>

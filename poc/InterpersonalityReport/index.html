@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.typekit.net/rdz2isl.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Interpersonality</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+
+
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/jquery.sticky.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/magnific-popup.min.js"></script>
+    <script src="js/main.js"></script>
+    <style type="text/css">
+
+        #test-table1 tr td {
+            vertical-align: text-top;
+            text-align: left;
+        }
+
+        #test-table1 tr th {
+            vertical-align: text-top;
+            text-align: left;
+        }
+
+        #test-table tr td {
+            vertical-align: text-top;
+            text-align: left;
+        }
+
+        #test-table tr th {
+            vertical-align: text-top;
+            text-align: left;
+        }
+
+        #test-table1_r tr td {
+            vertical-align: text-top;
+            text-align: justify;
+        }
+
+        #test-table1_r tr th {
+            vertical-align: text-top;
+            text-align: justify;
+        }
+
+
+        #test-table1_r1 tr td {
+            vertical-align: text-top;
+            text-align: justify;
+        }
+
+        #test-table1_r1 tr th {
+            vertical-align: text-top;
+            text-align: justify;
+        }
+
+
+        #test-table1_r22 tr td {
+            vertical-align: text-top;
+            text-align: justify;
+        }
+
+        #test-table1_r22 tr th {
+            vertical-align: text-top;
+            text-align: justify;
+        }
+
+
+        #guides-table tr th {
+            vertical-align: text-top;
+            text-align: justify;
+        }
+
+
+        #guides-table tr td {
+            vertical-align: text-top;
+            text-align: justify;
+        }
+
+        #guides-table tr th {
+            vertical-align: text-top;
+            text-align: justify;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+        function myFunction() {
+            $("#test-table").hide();
+            $("#test-table1").hide();
+            $("#test-table1_r").hide();
+            $("#test-table1_r1").hide();
+            $("#test-table1_r22").hide();
+            $("#test-table1_r33").hide();
+            $("#guides-table").hide();
+
+
+            document.getElementById('user_id_r').value = '';
+            document.getElementById('section_r').value = '';
+            document.getElementById('user_type_r').value = '';
+            document.getElementById('language_r').value = '';
+
+            document.getElementById('userreportlanguage').value = '';
+            document.getElementById('user_id1').value = '';
+            document.getElementById('user_id2').value = '';
+            document.getElementById('language').value = '';
+            document.getElementById('user_type').value = '';
+            document.getElementById('user_id').value = '';
+
+            document.getElementById('report_id_1').value = '';
+            document.getElementById('report_id_2').value = '';
+
+            document.getElementById('language_id').value = '';
+            document.getElementById('report_name').value = '';
+
+            document.getElementById("errorMsg").style.display = "none";
+        }
+
+        $(document).ready(function () {
+            console.log("click");
+
+
+            $('#IndividualReport').click(function (e) {
+
+                e.preventDefault();
+
+
+                var userIdValue = document.getElementById("user_id").value;
+
+
+                var section = document.getElementById("section");
+                var sectionValue = section.options[section.selectedIndex].value;
+
+                var userType = document.getElementById("user_type");
+                var userTypeValue = userType.options[userType.selectedIndex].value;
+
+                var lang = document.getElementById("language");
+                var languageValue = lang.options[lang.selectedIndex].value;
+
+                var report = "INDIVIDUAL_REPORT"
+
+                var jsonData = {
+                    user_id: userIdValue,
+                    section_id: sectionValue,
+                    self_user: userTypeValue,
+                    language_id: languageValue,
+                    report_tab: report
+                }
+
+
+                console.log("jsonData", JSON.stringify(jsonData))
+
+                $.ajax({
+                    url: 'https://x5lper6q2g.execute-api.us-east-1.amazonaws.com/v1/userprofilesreport',
+                    type: 'POST',
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    headers: {
+                        "Access-Control-Allow-Credentials": true,
+                        "Access-Control-Allow-Origin": "*"
+                    },
+                    data: JSON.stringify(jsonData),
+                    success: function (response) {
+                        document.getElementById("errorMsg").style.display = "none";
+
+                        var sectionMap = new Map();
+                        var sectionNameMap = new Map();
+                        var storyMap = new Map();
+                        var contentMap = new Map();
+                        var storyId = new Map();
+                        var sectionRowSpan = new Map();
+
+                        sectionNameMap.set("1", "Introduction");
+                        sectionNameMap.set("2", "Romantic Relationships");
+                        sectionNameMap.set("3", "Career Path");
+                        sectionNameMap.set("4", "Lifestyle");
+                        sectionNameMap.set("5", "At Work");
+
+                        response.current_report_content.forEach(testFunction);
+                        var styleCodeValue = ""
+                        var contentValue = ""
+
+                        function testFunction(value, index, array) {
+
+                            styleCodeValue = storyMap.get(value.Section + "_" + value.Story);
+                            contentValue = contentMap.get(value.Section + "_" + value.Story);
+
+                            if (styleCodeValue === undefined)
+                                styleCodeValue = ""
+
+                            if (contentValue === undefined)
+                                contentValue = ""
+
+                            styleCodeValue = styleCodeValue + value.Number + ", ";
+                            contentValue = contentValue + value.Content + "  ";
+
+                            sectionMap.set(value.Section + "_" + value.Story, value.Story);
+                            storyMap.set(value.Section + "_" + value.Story, styleCodeValue);
+                            contentMap.set(value.Section + "_" + value.Story, contentValue);
+                            storyId.set(value.Story, "StoryUniqueId");
+                        }
+
+                        console.log(sectionMap)
+                        console.log(storyMap)
+                        console.log(storyId)
+                        console.log(contentMap)
+
+                        var sectionNameMapKeys = sectionNameMap.keys();
+
+                        for (var sectionNameElement of sectionNameMapKeys) {
+                            var count = 0;
+                            // var storyIdKeys = storyId.keys();
+                            var storyIdKeys = Array.from(storyId.keys())
+                            storyIdKeys.sort()
+                            for (var storyElement of storyIdKeys) {
+                                if (sectionMap.get(sectionNameElement + "_" + storyElement) !== undefined) {
+                                    count = count + 1;
+                                    sectionRowSpan.set(sectionNameElement, count)
+                                }
+                            }
+                        }
+                        console.log(sectionRowSpan)
+                        //Empty the table first
+                        $("#test-table1").empty();
+                        $("#test-table1").show();
+                        var buildName = "<thead><tr><th scope=\"col\">Section</th><th scope=\"col\">Story</th><th scope=\"col\">Style Code</th><th scope=\"col\">Style Content</th></tr></thead>";
+
+                        var sectionNameMapKeys = sectionNameMap.keys();
+
+
+                        var sectionNameValue = "";
+                        var rowSpanValue = "";
+                        var storyValue = "";
+                        var styleCodeValue = "";
+                        var baseTable = "";
+                        var baseTable1 = "";
+                        var baseTable2 = "";
+                        for (var sectionNameElement of sectionNameMapKeys) {
+                            var count = 0;
+                            sectionNameValue = sectionNameMap.get(sectionNameElement);
+                            // var storyIdKeys = storyId.keys();
+                            var storyIdKeys = Array.from(storyId.keys())
+                            storyIdKeys.sort()
+                            for (var storyElement of storyIdKeys) {
+                                if (sectionMap.get(sectionNameElement + "_" + storyElement) !== undefined) {
+                                    count = count + 1;
+                                    storyValue = storyElement;
+                                    rowSpanValue = sectionRowSpan.get(sectionNameElement);
+                                    styleCodeValue = storyMap.get(sectionNameElement + "_" + storyElement);
+                                    content = contentMap.get(sectionNameElement + "_" + storyElement);
+
+                                    if (count == 1) {
+                                        baseTable1 = baseTable1 + "<tr><td rowspan=" + rowSpanValue + ">" + sectionNameValue + "</td><td>" + storyValue + "</td><td>" + styleCodeValue.substring(0, styleCodeValue.length - 2) + "</td><td>" + content.substring(0, content.length - 2) + "</td></tr>";
+                                    } else {
+                                        baseTable1 = baseTable1 + "<tr><td>" + storyValue + "</td><td>" + styleCodeValue.substring(0, styleCodeValue.length - 2) + "</td><td>" + content.substring(0, content.length - 2) + "</td></tr>";
+                                    }
+                                }
+                                baseTable = baseTable1;
+                            }
+                            baseTable = baseTable1;
+                        }
+                        $("#test-table1").append(buildName + baseTable);
+
+
+                    },
+                    error: function (error) {
+                        $("#test-table1").empty();
+                        $("#test-table1_r1").empty();
+                        console.log(error.responseJSON.message);
+                        document.getElementById("errorMsg").style.display = "inherit";
+                        document.getElementById("errorMsg").innerHTML = error.responseJSON.message;
+
+                    }
+                });
+
+
+                e.preventDefault();
+            });
+
+
+            $('#UserReport').click(function (e) {
+                e.preventDefault();
+
+                var userId1Value = document.getElementById("user_id1").value;
+                var userId2Value = document.getElementById("user_id2").value;
+
+
+                var userreportlang = document.getElementById("userreportlanguage");
+                var userreportlanguageValue = userreportlang.options[userreportlang.selectedIndex].value;
+
+
+                var jsonData = {
+                    user_id_1: userId1Value,
+                    user_id_2: userId2Value,
+                    language_id: userreportlanguageValue,
+
+                }
+
+                console.log(JSON.stringify(jsonData))
+
+
+                $.ajax({
+                    url: 'https://x5lper6q2g.execute-api.us-east-1.amazonaws.com/v1/userpairinterpersonalityreport',
+                    type: 'POST',
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    headers: {
+                        "Access-Control-Allow-Credentials": true,
+                        "Access-Control-Allow-Origin": "*"
+                    },
+                    data: JSON.stringify(jsonData),
+                    success: function (response) {
+                        console.log(response);
+                        document.getElementById("errorMsg").style.display = "none";
+
+                        for (i = 0; i < response.user_1.length; i++) {
+                            console.log(response.user_1[i]);
+                            console.log(response.user_2[i]);
+                            console.log(response.user_1_content[i]);
+                            console.log(response.user_2_content[i]);
+                            console.log(response.comparison[i]);
+                            console.log(response.theme[i]);
+                        }
+
+                        //Empty the table first
+                        $("#test-table").empty();
+
+                        $("#test-table").show();
+
+                        var buildName1 = "<thead><tr><th colspan=\"6\" style=\"text-align: center;\">Similarity Score: " + response.similarity_score + "%</th></tr></thead>";
+
+                        $("#test-table").append(buildName1);
+
+                        var buildName2 = "<tbody><tr><th scope=\"col\">Theme</th><th scope=\"col\">Comparison</th><th scope=\"col\">User 1 Style</th><th scope=\"col\">User 1 Content</th><th scope=\"col\">User 2 Style</th><th scope=\"col\">User 2 Content</th></tr></thead>";
+
+                        $("#test-table").append(buildName2);
+                        for (i = 0; i < response.user_1.length; i++) {
+                            console.log(response.user_1[i]);
+                            console.log(response.user_2[i]);
+                            console.log(response.user_1_content[i]);
+                            console.log(response.user_2_content[i]);
+                            console.log(response.comparison[i]);
+                            console.log(response.theme[i]);
+                            var baseTable = "<tbody><td>" + response.theme[i] + "</td><td>" + response.comparison[i] + "</td><td>" + response.user_1[i] + "</td><td>" + response.user_1_content[i] + "</td><td>" + response.user_2[i] + "</td><td>" + response.user_2_content[i] + "</td></tbody>";
+                            $("#test-table").append(baseTable);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error.responseJSON.message);
+                        $("#test-table").empty();
+                        document.getElementById("errorMsg").style.display = "inherit";
+                        document.getElementById("errorMsg").innerHTML = error.responseJSON.message;
+                    }
+                });
+                e.preventDefault();
+            });
+
+
+            $('#FilteredReport').click(function (e) {
+
+                e.preventDefault();
+
+                document.getElementById("test-table1_r").style.display = "none";
+                document.getElementById("test-table1_r1").style.display = "none";
+                document.getElementById("test-table1_r22").style.display = "none";
+
+
+                var userIdValue = document.getElementById("user_id_r").value;
+
+
+                var section = document.getElementById("section_r");
+                var sectionValue = section.options[section.selectedIndex].value;
+
+                var userType = document.getElementById("user_type_r");
+                var userTypeValue = userType.options[userType.selectedIndex].value;
+
+                var lang = document.getElementById("language_r");
+                var languageValue = lang.options[lang.selectedIndex].value;
+                var report = "INDIVIDUAL_FILTERED_V1";
+
+                var jsonData = {
+                    user_id: userIdValue,
+                    section_id: sectionValue,
+                    self_user: userTypeValue,
+                    language_id: languageValue,
+                    report_tab: report
+                }
+
+
+                console.log("jsonData", JSON.stringify(jsonData))
+
+                $.ajax({
+                    url: 'https://x5lper6q2g.execute-api.us-east-1.amazonaws.com/v1/userprofilesreport',
+                    type: 'POST',
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    headers: {
+                        "Access-Control-Allow-Credentials": true,
+                        "Access-Control-Allow-Origin": "*"
+                    },
+                    data: JSON.stringify(jsonData),
+                    success: function (response) {
+
+                        for (var i = 0; i < response.current_report_content.length; i++) {
+                            var obj = response.current_report_content[i];
+
+                            console.log(obj.Illustration);
+                            if (obj.Illustration == 1) {
+                                obj.Content = "Illustration: " + obj.Content;
+                            }
+                        }
+
+
+                        for (var i = 0; i < response.extended_report_content.length; i++) {
+                            var obj = response.extended_report_content[i];
+
+                            console.log(obj.Illustration);
+                            if (obj.Illustration == 1) {
+                                obj.Content = "Illustration: " + obj.Content;
+                            }
+                        }
+
+
+                        document.getElementById("errorMsg").style.display = "none";
+
+                        var sectionMap = new Map();
+                        var sectionNameMap = new Map();
+                        var storyMap = new Map();
+                        var contentMap = new Map();
+                        var storyId = new Map();
+                        var sectionRowSpan = new Map();
+
+                        sectionNameMap.set("0", "Summary");
+                        sectionNameMap.set("1", "Introduction");
+                        sectionNameMap.set("2", "Romantic Relationships");
+                        sectionNameMap.set("3", "Career Path");
+                        sectionNameMap.set("4", "Lifestyle");
+                        sectionNameMap.set("5", "At Work");
+
+                        response.current_report_content.forEach(testFunction);
+                        var styleCodeValue = ""
+                        var contentValue = ""
+
+                        function testFunction(value, index, array) {
+
+                            styleCodeValue = storyMap.get(value.Section + "_" + value.Story);
+                            contentValue = contentMap.get(value.Section + "_" + value.Story);
+
+                            if (styleCodeValue === undefined)
+                                styleCodeValue = ""
+
+                            if (contentValue === undefined)
+                                contentValue = ""
+
+
+                            styleCodeValue = styleCodeValue + value.Number + ", ";
+                            contentValue = contentValue + value.Content + "  ";
+
+
+                            sectionMap.set(value.Section + "_" + value.Story, value.Story);
+                            storyMap.set(value.Section + "_" + value.Story, styleCodeValue);
+                            contentMap.set(value.Section + "_" + value.Story, contentValue);
+                            storyId.set(value.Story, "StoryUniqueId");
+
+                        }
+
+
+                        var sectionNameMapKeys = sectionNameMap.keys();
+
+                        for (var sectionNameElement of sectionNameMapKeys) {
+                            var count = 0;
+                            // var storyIdKeys = storyId.keys();
+                            var storyIdKeys = Array.from(storyId.keys())
+                            storyIdKeys.sort()
+                            for (var storyElement of storyIdKeys) {
+                                if (sectionMap.get(sectionNameElement + "_" + storyElement) !== undefined) {
+                                    count = count + 1;
+                                    sectionRowSpan.set(sectionNameElement, count)
+                                }
+                            }
+                        }
+                        console.log(sectionRowSpan)
+                        //Empty the table first
+                        $("#test-table1_r").empty();
+                        $("#test-table1_r").show();
+
+
+                        var buildName0 = "<thead><tr><th colspan=\"4\" scope=\"col\" style\"text-align: center\"><h3>Main Report Content</h3></th></tr></thead>";
+                        var buildName = "<thead><tr><th scope=\"col\">Section</th><th scope=\"col\">Story</th><th scope=\"col\">Style Code</th><th scope=\"col\">Style Content</th></tr></thead>";
+
+                        var sectionNameMapKeys = sectionNameMap.keys();
+
+
+                        var sectionNameValue = "";
+                        var rowSpanValue = "";
+                        var storyValue = "";
+                        var styleCodeValue = "";
+                        var baseTable = "";
+                        var baseTable1 = "";
+                        var baseTable2 = "";
+                        for (var sectionNameElement of sectionNameMapKeys) {
+                            var count = 0;
+                            sectionNameValue = sectionNameMap.get(sectionNameElement);
+                            // var storyIdKeys = storyId.keys();
+                            var storyIdKeys = Array.from(storyId.keys())
+                            storyIdKeys.sort()
+                            for (var storyElement of storyIdKeys) {
+                                if (sectionMap.get(sectionNameElement + "_" + storyElement) !== undefined) {
+                                    count = count + 1;
+                                    storyValue = storyElement;
+                                    rowSpanValue = sectionRowSpan.get(sectionNameElement);
+                                    styleCodeValue = storyMap.get(sectionNameElement + "_" + storyElement);
+                                    content = contentMap.get(sectionNameElement + "_" + storyElement);
+
+
+                                    if (count == 1) {
+
+                                        baseTable1 = baseTable1 + "<tr><td rowspan=" + rowSpanValue + ">" + sectionNameValue + "</td><td>" + storyValue + "</td><td>" + styleCodeValue.substring(0, styleCodeValue.length - 2) + "</td><td>" + content.substring(0, content.length - 2) + "</td></tr>";
+                                    } else {
+                                        baseTable1 = baseTable1 + "<tr><td>" + storyValue + "</td><td>" + styleCodeValue.substring(0, styleCodeValue.length - 2) + "</td><td>" + content.substring(0, content.length - 2) + "</td></tr>";
+                                    }
+                                }
+                                baseTable = baseTable1;
+                            }
+                            baseTable = baseTable1;
+                        }
+                        $;
+                        document.getElementById("test-table1_r").style.display = "inherit";
+
+                        // document.getElementById("crc").style.display = "inherit";
+                        $("#test-table1_r").append(buildName0 + buildName + baseTable);
+
+
+                        if ((response.extended_report_content).length > 0) {
+
+                            var sectionMap = new Map();
+                            var sectionNameMap = new Map();
+                            var storyMap = new Map();
+                            var contentMap = new Map();
+                            var storyId = new Map();
+                            var sectionRowSpan = new Map();
+
+                            sectionNameMap.set("0", "Summary");
+                            sectionNameMap.set("1", "Introduction");
+                            sectionNameMap.set("2", "Romantic Relationships");
+                            sectionNameMap.set("3", "Career Path");
+                            sectionNameMap.set("4", "Lifestyle");
+                            sectionNameMap.set("5", "At Work");
+                            response.extended_report_content.forEach(testFunction_r1);
+                            var styleCodeValue_r1 = ""
+                            var contentValue_r1 = ""
+
+                            function testFunction_r1(value, index, array) {
+
+                                styleCodeValue_r1 = storyMap.get(value.Section + "_" + value.Story);
+                                contentValue_r1 = contentMap.get(value.Section + "_" + value.Story);
+
+                                if (styleCodeValue_r1 === undefined)
+                                    styleCodeValue_r1 = ""
+
+                                if (contentValue_r1 === undefined)
+                                    contentValue_r1 = ""
+
+                                styleCodeValue_r1 = styleCodeValue_r1 + value.Number + ", ";
+                                contentValue_r1 = contentValue_r1 + value.Content + "  ";
+
+                                sectionMap.set(value.Section + "_" + value.Story, value.Story);
+                                storyMap.set(value.Section + "_" + value.Story, styleCodeValue_r1);
+                                contentMap.set(value.Section + "_" + value.Story, contentValue_r1);
+                                storyId.set(value.Story, "StoryUniqueId");
+                            }
+
+
+                            var sectionNameMapKeys_r1 = sectionNameMap.keys();
+
+                            for (var sectionNameElement_r1 of sectionNameMapKeys_r1) {
+                                var count = 0;
+                                // var storyIdKeys = storyId.keys();
+                                var storyIdKeys = Array.from(storyId.keys())
+                                storyIdKeys.sort()
+                                for (var storyElement of storyIdKeys) {
+                                    if (sectionMap.get(sectionNameElement_r1 + "_" + storyElement) !== undefined) {
+                                        count = count + 1;
+                                        sectionRowSpan.set(sectionNameElement_r1, count)
+                                    }
+                                }
+                            }
+
+                            //Empty the table first
+                            $("#test-table1_r1").empty();
+                            $("#test-table1_r1").show();
+
+
+                            var buildName0 = "<thead><tr><th colspan=\"4\" scope=\"col\" style\"text-align: center\"><h3>Extended Report Content</h3></th></tr></thead>";
+                            var buildName_r1 = "<thead><tr><th scope=\"col\">Section</th><th scope=\"col\">Story</th><th scope=\"col\">Style Code</th><th scope=\"col\">Style Content</th></tr></thead>";
+
+                            var sectionNameMapKeys_r1 = sectionNameMap.keys();
+
+
+                            var sectionNameValue_r1 = "";
+                            var rowSpanValue_r1 = "";
+                            var storyValue_r1 = "";
+                            var styleCodeValue_r1 = "";
+                            var baseTable_r1 = "";
+                            var baseTable1_r1 = "";
+                            var baseTable2_r1 = "";
+                            for (var sectionNameElement_r1 of sectionNameMapKeys_r1) {
+                                var count = 0;
+                                sectionNameValue_r1 = sectionNameMap.get(sectionNameElement_r1);
+                                // var storyIdKeys = storyId.keys();
+                                var storyIdKeys = Array.from(storyId.keys())
+                                storyIdKeys.sort()
+                                for (var storyElement of storyIdKeys) {
+                                    if (sectionMap.get(sectionNameElement_r1 + "_" + storyElement) !== undefined) {
+                                        count = count + 1;
+                                        storyValue_r1 = storyElement;
+                                        rowSpanValue_r1 = sectionRowSpan.get(sectionNameElement_r1);
+                                        styleCodeValue_r1 = storyMap.get(sectionNameElement_r1 + "_" + storyElement);
+                                        content = contentMap.get(sectionNameElement_r1 + "_" + storyElement);
+
+                                        if (count == 1) {
+                                            baseTable_r1 = baseTable_r1 + "<tr><td rowspan=" + rowSpanValue_r1 + ">" + sectionNameValue_r1 + "</td><td>" + storyValue_r1 + "</td><td>" + styleCodeValue_r1.substring(0, styleCodeValue_r1.length - 2) + "</td><td>" + content.substring(0, content.length - 2) + "</td></tr>";
+                                        } else {
+                                            baseTable_r1 = baseTable_r1 + "<tr><td>" + storyValue_r1 + "</td><td>" + styleCodeValue_r1.substring(0, styleCodeValue_r1.length - 2) + "</td><td>" + content.substring(0, content.length - 2) + "</td></tr>";
+                                        }
+                                    }
+                                    baseTable_r1 = baseTable_r1;
+                                }
+                                baseTable_r1 = baseTable_r1;
+                            }
+                            $
+                            // document.getElementById("erc").style.display = "inherit";
+                            document.getElementById("test-table1_r1").style.display = "inherit";
+
+
+                            $("#test-table1_r1").append(buildName0 + buildName_r1 + baseTable_r1);
+
+                        }
+
+
+                        console.log(response.share_module_report_content);
+                        console.log(typeof (response.share_module_report_content));
+                        console.log(typeof ((response.share_module_report_content).length));
+
+                        if ((response.share_module_report_content).length > 0) {
+                            var sectionMap = new Map();
+                            var sectionNameMap = new Map();
+                            var storyMap = new Map();
+                            var contentMap = new Map();
+                            var storyId = new Map();
+                            var sectionRowSpan = new Map();
+
+                            sectionNameMap.set("0", "Summary");
+                            sectionNameMap.set("1", "Introduction");
+                            sectionNameMap.set("2", "Romantic Relationships");
+                            sectionNameMap.set("3", "Career Path");
+                            sectionNameMap.set("4", "Lifestyle");
+                            sectionNameMap.set("5", "At Work");
+
+
+                            response.share_module_report_content.forEach(testFunction22);
+                            var styleCodeValue = ""
+                            var contentValue = ""
+
+                            function testFunction22(value, index, array) {
+
+                                styleCodeValue = storyMap.get(value.Section + "_" + value.Story);
+                                contentValue = contentMap.get(value.Section + "_" + value.Story);
+
+                                if (styleCodeValue === undefined)
+                                    styleCodeValue = ""
+
+                                if (contentValue === undefined)
+                                    contentValue = ""
+
+                                styleCodeValue = styleCodeValue + value.Number + ", ";
+                                contentValue = contentValue + value.Content + "  ";
+
+                                sectionMap.set(value.Section + "_" + value.Story, value.Story);
+                                storyMap.set(value.Section + "_" + value.Story, styleCodeValue);
+                                contentMap.set(value.Section + "_" + value.Story, contentValue);
+                                storyId.set(value.Story, "StoryUniqueId");
+                            }
+
+
+                            var sectionNameMapKeys = sectionNameMap.keys();
+
+                            for (var sectionNameElement of sectionNameMapKeys) {
+                                var count = 0;
+                                // var storyIdKeys = storyId.keys();
+                                var storyIdKeys = Array.from(storyId.keys())
+                                storyIdKeys.sort()
+                                for (var storyElement of storyIdKeys) {
+                                    if (sectionMap.get(sectionNameElement + "_" + storyElement) !== undefined) {
+                                        count = count + 1;
+                                        sectionRowSpan.set(sectionNameElement, count)
+                                    }
+                                }
+                            }
+                            console.log(sectionRowSpan)
+                            //Empty the table first
+                            $("#test-table1_r22").empty();
+                            $("#test-table1_r22").show();
+
+
+                            var buildName0 = "<thead><tr><th colspan=\"4\" scope=\"col\" style\"text-align: center\"><h3>Share Modules CTA</h3></th></tr></thead>";
+                            var buildName = "<thead><tr><th scope=\"col\">Section</th><th scope=\"col\">Style Content</th></tr></thead>";
+
+                            var sectionNameMapKeys = sectionNameMap.keys();
+
+
+                            var sectionNameValue = "";
+                            var rowSpanValue = "";
+                            var storyValue = "";
+                            var styleCodeValue = "";
+                            var baseTable = "";
+                            var baseTable1 = "";
+                            var baseTable2 = "";
+                            for (var sectionNameElement of sectionNameMapKeys) {
+                                var count = 0;
+                                sectionNameValue = sectionNameMap.get(sectionNameElement);
+
+                                var storyIdKeys = Array.from(storyId.keys())
+                                storyIdKeys.sort()
+                                for (var storyElement of storyIdKeys) {
+                                    if (sectionMap.get(sectionNameElement + "_" + storyElement) !== undefined) {
+                                        count = count + 1;
+                                        storyValue = storyElement;
+                                        rowSpanValue = sectionRowSpan.get(sectionNameElement);
+                                        styleCodeValue = storyMap.get(sectionNameElement + "_" + storyElement);
+                                        content = contentMap.get(sectionNameElement + "_" + storyElement);
+
+                                        if (count == 1) {
+                                            baseTable1 = baseTable1 + "<tr><td rowspan=" + rowSpanValue + ">" + sectionNameValue + "</td><td>" + content.substring(0, content.length - 2) + "</td></tr>";
+                                        } else {
+                                            baseTable1 = baseTable1 + "<tr><td>" + content.substring(0, content.length - 2) + "</td></tr>";
+                                        }
+                                    }
+                                    baseTable = baseTable1;
+                                }
+                                baseTable = baseTable1;
+                            }
+                            $;
+                            // document.getElementById("smrc").style.display = "inherit";
+                            $("#test-table1_r22").append(buildName0 + buildName + baseTable);
+                            document.getElementById("test-table1_r22").style.display = "inherit";
+                        }
+
+                    }
+                    ,
+
+                    error: function (error) {
+                        $("#test-table1_r").empty();
+                        $("#test-table1_r1").empty();
+                        $("#test-table1_r22").empty();
+
+                        console.log(error.responseJSON.message);
+                        document.getElementById("errorMsg").style.display = "inherit";
+                        document.getElementById("errorMsg").innerHTML = error.responseJSON.message;
+
+                    }
+
+
+                });
+                e.preventDefault();
+            });
+
+
+            $('#GuideReport').click(function (e) {
+                e.preventDefault();
+
+                // var userId1Value = document.getElementById("user_id_1").value;
+                var userId2Value = document.getElementById("report_id_2").value;
+                var userId1Value = $('#report_id_1').val();
+
+                var userreportlang = document.getElementById("language_id");
+                var userreportlanguageValue = userreportlang.options[userreportlang.selectedIndex].value;
+
+                var report_name = document.getElementById("report_name");
+                var report_nameValue = report_name.options[report_name.selectedIndex].value;
+
+                var jsonData = {
+                    user_id_1: userId1Value,
+                    user_id_2: userId2Value,
+                    language_id: userreportlanguageValue,
+                    report_name: report_nameValue
+
+                }
+
+                console.log(JSON.stringify(jsonData))
+
+
+                $.ajax({
+                    url: 'https://x5lper6q2g.execute-api.us-east-1.amazonaws.com/v1/userguidesreport',
+                    type: 'POST',
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    headers: {
+                        "Access-Control-Allow-Credentials": true,
+                        "Access-Control-Allow-Origin": "*"
+                    },
+                    data: JSON.stringify(jsonData),
+                    success: function (response) {
+                        console.log(response);
+                        document.getElementById("errorMsg").style.display = "none";
+
+                        for (i = 0; i < response.guides_report.length; i++) {
+                            console.log(response.guides_report[i].section);
+                            console.log(response.guides_report[i].theme_id);
+                            console.log(response.guides_report[i].importance);
+                            console.log(response.guides_report[i].theme_name);
+                            console.log(response.guides_report[i].user_1_style_id);
+                            console.log(response.guides_report[i].user_2_style_id);
+                            console.log(response.guides_report[i].user_1_style);
+                            console.log(response.guides_report[i].user_2_style);
+                            console.log(response.guides_report[i].content);
+                        }
+
+                        // //Empty the table first
+                        // $("#guides-table").empty();
+                        //
+                        // $("#guides-table").show();
+                        //
+                        //
+                        // var table_headings = "<tbody><tr><th scope=\"col\">Section No.</th><th scope=\"col\">Theme No.</th><th scope=\"col\">Theme Name</th><th scope=\"col\">User 1 Style Code</th><th scope=\"col\">User 2 Style Code</th><th scope=\"col\">Preframe</th><th scope=\"col\">User 1 Text</th><th scope=\"col\">User 2 Text</th><th scope=\"col\">Outro</th></tr></thead>";
+                        //
+                        // $("#guides-table").append(table_headings);
+                        // for (i = 0; i < response.guides_report.length; i++) {
+                        //     if (response.guides_report[i].section === 0) {
+                        //         var baseTable = "<tbody><td>" + response.guides_report[i].section + "</td><td>" + response.guides_report[i].theme_id + "</td><td>" + response.guides_report[i].theme_name + "</td><td>"
+                        //             + response.guides_report[i].user_1_style + "</td><td>" + response.guides_report[i].user_2_style + "</td><td>N/A</td><td>" + response.guides_report[i].content + "</td><td>N/A</td><td>N/A</td></tbody>";
+                        //     } else {
+                        //         var baseTable = "<tbody><td>" + response.guides_report[i].section + "</td><td>" + response.guides_report[i].theme_id + "</td><td>" + response.guides_report[i].theme_name + "</td>" +
+                        //             "<td>" + response.guides_report[i].user_1_style + "</td><td>" + response.guides_report[i].user_2_style + "</td><td>" + response.guides_report[i].preframe_style + "</td><td>" + response.guides_report[i].style_comparison_self_user +
+                        //             "</td><td>" + response.guides_report[i].style_comparison_other_user + "</td><td>" + response.guides_report[i].outro_text_style + "</td></tbody>";
+                        //     }
+                        //
+                        //     $("#guides-table").append(baseTable);
+                        // }
+
+                                    //Empty the table first
+            $("#guides-table").empty();
+
+            $("#guides-table").show();
+
+            var table_headings = "<tbody><tr><th scope=\"col\">Section No.</th><th scope=\"col\">Theme No.</th><th scope=\"col\">Theme Name</th><th scope=\"col\">User 1 Style Code</th><th scope=\"col\">User 2 Style Code</th><th scope=\"col\">Preframe</th><th scope=\"col\">User 1 Text</th><th scope=\"col\">User 2 Text</th><th scope=\"col\">Outro</th></tr></thead>";
+
+            $("#guides-table").append(table_headings);
+
+            getsectionCount = response.guides_report;
+            var section_temp = -100;
+            for (i = 0; i < response.guides_report.length; i++) {
+
+                if (response.guides_report[i].section !== section_temp) {
+
+                    var numsection = getsectionCount.reduce(function (n, getsectionCount) {
+                        return n + (getsectionCount.section == response.guides_report[i].section);
+                    }, 0);
+
+
+                    if (response.guides_report[i].section === 0) {
+
+                        var baseTable = "<tbody><td rowspan=" + numsection + ">" + response.guides_report[i].section + "</td><td>" + response.guides_report[i].theme_id + "</td><td>N/A</td><td>"
+                            + response.guides_report[i].user_1_style + "</td><td>" + response.guides_report[i].user_2_style + "</td><td>N/A</td><td>" + response.guides_report[i].content + "</td><td>N/A</td><td>N/A</td></tbody>";
+                    } else {
+                        var baseTable = "<tbody><td rowspan=" + numsection + ">" + response.guides_report[i].section + "</td><td>" + response.guides_report[i].theme_id + "</td><td>" + response.guides_report[i].theme_name + "</td>" +
+                            "<td>" + response.guides_report[i].user_1_style + "</td><td>" + response.guides_report[i].user_2_style + "</td><td>" + response.guides_report[i].preframe_style + "</td><td>" + response.guides_report[i].style_comparison_self_user +
+                            "</td><td>" + response.guides_report[i].style_comparison_other_user + "</td><td>" + response.guides_report[i].outro_text_style + "</td></tbody>";
+                    }
+                    section_temp = response.guides_report[i].section;
+
+
+                } else {
+
+                    if (response.guides_report[i].section === 0) {
+                        var baseTable = "<tbody><td style='border-top: 5px solid #343a40;'></td><td>" + response.guides_report[i].theme_id + "</td><td>N/A</td><td>"
+                            + response.guides_report[i].user_1_style + "</td><td>" + response.guides_report[i].user_2_style + "</td><td>N/A</td><td>" + response.guides_report[i].content + "</td><td>N/A</td><td>N/A</td></tbody>";
+                    } else {
+                        var baseTable = "<tbody><td style='border-bottom: 0px;'></td><td>" + response.guides_report[i].theme_id + "</td><td>" + response.guides_report[i].theme_name + "</td>" +
+                            "<td>" + response.guides_report[i].user_1_style + "</td><td>" + response.guides_report[i].user_2_style + "</td><td>" + response.guides_report[i].preframe_style + "</td><td>" + response.guides_report[i].style_comparison_self_user +
+                            "</td><td>" + response.guides_report[i].style_comparison_other_user + "</td><td>" + response.guides_report[i].outro_text_style + "</td></tbody>";
+                    }
+                    section_temp = response.guides_report[i].section;
+                }
+
+
+                $("#guides-table").append(baseTable);
+
+
+            }
+
+
+
+                    },
+                    error: function (error) {
+                        console.log(error.responseJSON.message);
+                        $("#test-table").empty();
+                        document.getElementById("errorMsg").style.display = "inherit";
+                        document.getElementById("errorMsg").innerHTML = error.responseJSON.message;
+                    }
+                });
+                e.preventDefault();
+            });
+
+
+        });
+    </script>
+
+</head>
+<body>
+
+<div class="sf-container">
+    <div class="sf-header text-center">
+        <img src="images/signup-logo-small.svg" class="logo">
+        <h2>Interpersonality</h2>
+
+        <div class="alert alert-danger" id="errorMsg" style="display: none" role="alert">
+            Test Error MEssages
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                <a onclick="myFunction()" class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                   href="#nav-home" role="tab"
+                   aria-controls="nav-home" aria-selected="true">Individual Report</a>
+
+                <a onclick="myFunction()" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+                   href="#nav-profile" role="tab"
+                   aria-controls="nav-profile" aria-selected="false">Interpersonal Report</a>
+
+                <a onclick="myFunction()" class="nav-item nav-link" id="nav-filtered-tab" data-toggle="tab"
+                   href="#nav-filtered" role="tab"
+                   aria-controls="nav-filtered" aria-selected="false">Filtered Report</a>
+
+                <a onclick="myFunction()" class="nav-item nav-link" id="nav-CouplesGuide-tab" data-toggle="tab"
+                   href="#nav-guides" role="tab"
+                   aria-controls="nav-+" aria-selected="false">Guides</a>
+
+
+            </div>
+        </nav>
+        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+
+                <div class="sf-wemail">
+
+                    <form action="#" id="individual-form">
+
+                        <div class="row justify-content-center">
+
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="User ID" id="user_id"
+                                           name="user_id">
+                                </div>
+
+                                <div class="form-group">
+                                    <select class="form-control" id="user_type" name="user_type">
+                                        <option class="text-muted" style="display:none" value="">User Type</option>
+                                        <option value="1">Self</option>
+                                        <option value="0">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <select class="form-control" id="section" name="section">
+                                        <option class="text-muted" style="display:none" value="">Section</option>
+                                        <option value="-1">All</option>
+                                        <option value="1">Introduction</option>
+                                        <option value="2">Romantic Relationships</option>
+                                        <option value="3">Career Path</option>
+                                        <option value="4">Lifestyle</option>
+                                        <option value="5">At Work</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="language" name="language">
+                                        <option class="text-muted" style="display:none" value="">Select Language
+                                        </option>
+                                        <option value="165">English</option>
+                                        <option value="245">Español</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group submit">
+                            <button id="IndividualReport" type="submit">Generate Report!</button>
+                        </div>
+                    </form>
+                </div>
+
+                <table id="test-table1" class="table table-dark table-hover">
+
+                </table>
+
+            </div>
+            <!-- .sf-wemail -->
+
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                <div class="sf-wemail">
+                    <form action="#" id="individual-form1">
+
+
+                        <div class="row justify-content-center">
+                            <div class="col">
+
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="User ID 1" id="user_id1"
+                                           name="user_id1">
+                                </div>
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="User ID 2" id="user_id2"
+                                           name="user_id2">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <select class="form-control" id="userreportlanguage" name="language">
+                                <option class="text-muted" style="display:none" value="">Select Language</option>
+                                <option value="165">English</option>
+                                <option value="245">Español</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group submit">
+                            <button id="UserReport" type="submit">Generate Report!</button>
+                        </div>
+                    </form>
+                </div>
+
+                <table id="test-table" class="table table-dark table-hover">
+                </table>
+            </div>
+
+            <div class="tab-pane fade show" id="nav-filtered" role="tabpanel" aria-labelledby="nav-filtered-tab">
+
+
+                <div class="sf-wemail">
+
+                    <form action="#" id="filtered-form">
+
+                        <div class="row justify-content-center">
+
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="User ID" id="user_id_r"
+                                           name="user_id_r">
+                                </div>
+
+                                <div class="form-group">
+                                    <select class="form-control" id="user_type_r" name="user_type_r">
+                                        <option class="text-muted" style="display:none" value="">User Type</option>
+                                        <option value="1">Self</option>
+                                        <option value="0">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <select class="form-control" id="section_r" name="section_r">
+                                        <option class="text-muted" style="display:none" value="">Section</option>
+                                        <option value="-1">All</option>
+                                        <option value="0">Summary</option>
+                                        <option value="1">Introduction</option>
+                                        <option value="2">Romantic Relationships</option>
+                                        <option value="3">Career Path</option>
+                                        <option value="4">Lifestyle</option>
+                                        <option value="5">At Work</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="language_r" name="language_r">
+                                        <option class="text-muted" style="display:none" value="">Select Language
+                                        </option>
+                                        <option value="165">English</option>
+                                        <option value="245">Español</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group submit">
+                            <button id="FilteredReport" type="submit">Generate Report!</button>
+                        </div>
+                    </form>
+                </div>
+                <br>
+
+                <table id="test-table1_r" style="display:none" class="table table-dark table-hover">
+
+                </table>
+                <br>
+
+
+                <table id="test-table1_r1" style="display:none" class="table table-dark table-hover">
+
+                </table>
+                <br>
+
+                <table id="test-table1_r22" style="display:none" class="table table-dark table-hover">
+
+                </table>
+
+            </div>
+
+            <div class="tab-pane fade" id="nav-guides" role="tabpanel" aria-labelledby="nav-guides-tab">
+
+                <div class="sf-wemail">
+                    <form action="#" id="guides-form">
+
+
+                        <div class="row justify-content-center">
+                            <div class="col">
+
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="User ID 1" id="report_id_1"
+                                           name="report_id_1">
+                                </div>
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="User ID 2" id="report_id_2"
+                                           name="report_id_2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <select class="form-control" id="language_id" name="language_id">
+                                        <option class="text-muted" style="display:none" value="">Select Language
+                                        </option>
+                                        <option value="165">English</option>
+                                        <option value="245">Español</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+
+                                    <select class="form-control" id="report_name" name="report_name">
+                                        <option class="text-muted" style="display:none" value="">Select Report Type
+                                        </option>
+                                        <option value="CouplesGuide">Couple’s Guide</option>
+                                        <option value="CompatibilityGuide">Romantic Compatibility Guide</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group submit">
+                            <button id="GuideReport" type="submit">Generate Report!</button>
+                        </div>
+                    </form>
+                </div>
+                <table id="guides-table" class="table table-dark table-hover">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

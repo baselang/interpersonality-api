@@ -1,0 +1,65 @@
+[02/May/2020 12:01:04] "GET / HTTP/1.1" 200 8023
+[02/May/2020 12:01:04] "GET /favicon.ico HTTP/1.1" 404 179
+[02/May/2020 12:01:22] "POST / HTTP/1.1" 302 0
+[02/May/2020 12:01:22] "GET / HTTP/1.1" 200 8464
+[02/May/2020 12:07:53] "GET / HTTP/1.1" 200 8023
+[02/May/2020 12:08:08] "POST / HTTP/1.1" 302 0
+[02/May/2020 12:08:08] "GET / HTTP/1.1" 200 8464
+[02/May/2020 12:08:30] "GET / HTTP/1.1" 200 8023
+[02/May/2020 12:08:41] "POST / HTTP/1.1" 302 0
+[02/May/2020 12:08:41] "GET / HTTP/1.1" 200 8464
+[02/May/2020 12:09:46] "GET / HTTP/1.1" 200 8023
+[02/May/2020 12:10:03] "POST / HTTP/1.1" 302 0
+[02/May/2020 12:10:03] "GET / HTTP/1.1" 200 8464
+[02/May/2020 12:11:22] "GET / HTTP/1.1" 200 8023
+[02/May/2020 12:11:34] "POST / HTTP/1.1" 302 0
+[02/May/2020 12:11:34] "GET / HTTP/1.1" 200 8464
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 02, 2020 - 12:00:50
+Django version 3.0.5, using settings 'formData.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CTRL-BREAK.
+data {'message': 'Issue created successfully. Click <a href="https://github.com/hareesh2024/Demo-Repo/issues/72">here to view issue detail.</a>'}
+msg Issue created successfully. Click <a href="https://github.com/hareesh2024/Demo-Repo/issues/72">here to view issue detail.</a>
+data {'message': 'Issue created successfully. Click <a href="https://github.com/hareesh2024/Demo-Repo/issues/73">here to view issue detail.</a>'}
+msg Issue created successfully. Click <a href="https://github.com/hareesh2024/Demo-Repo/issues/73">here to view issue detail.</a>
+data {'message': 'Issue created successfully. Click <a href="https://github.com/hareesh2024/Demo-Repo/issues/74">here to view issue detail.</a>'}
+msg Issue created successfully. Click <a href="https://github.com/hareesh2024/Demo-Repo/issues/74">here to view issue detail.</a>
+data {'message': 'Issue created successfully. Click <a href="https://github.com/hareesh2024/Demo-Repo/issues/75">here to view issue detail.</a>'}
+msg Issue created successfully. Click <a href="https://github.com/hareesh2024/Demo-Repo/issues/75">here to view issue detail.</a>
+data {'message': 'Issue created successfully. Click <a href="https://github.com/hareesh2024/Demo-Repo/issues/76">here to view issue detail.</a>'}
+msg Issue created successfully. Click <a href="https://github.com/hareesh2024/Demo-Repo/issues/76">here to view issue detail.</a>
+Traceback (most recent call last):
+  File "manage.py", line 21, in <module>
+    main()
+  File "manage.py", line 17, in main
+    execute_from_command_line(sys.argv)
+  File "C:\Users\certainty\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\management\__init__.py", line 401, in execute_from_command_line
+    utility.execute()
+  File "C:\Users\certainty\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\management\__init__.py", line 395, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "C:\Users\certainty\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\management\__init__.py", line 244, in fetch_command
+    klass = load_command_class(app_name, subcommand)
+  File "C:\Users\certainty\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\management\__init__.py", line 37, in load_command_class
+    module = import_module('%s.management.commands.%s' % (app_name, name))
+  File "C:\Users\certainty\AppData\Local\Programs\Python\Python37-32\lib\importlib\__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1006, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 967, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "C:\Users\certainty\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\contrib\staticfiles\management\commands\runserver.py", line 3, in <module>
+    from django.core.management.commands.runserver import (
+  File "C:\Users\certainty\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\management\commands\runserver.py", line 10, in <module>
+    from django.core.servers.basehttp import (
+  File "C:\Users\certainty\AppData\Local\Programs\Python\Python37-32\lib\site-packages\django\core\servers\basehttp.py", line 14, in <module>
+    from wsgiref import simple_server
+  File "C:\Users\certainty\AppData\Local\Programs\Python\Python37-32\lib\wsgiref\simple_server.py", line 13, in <module>
+    from http.server import BaseHTTPRequestHandler, HTTPServer
+  File "C:\Users\certainty\AppData\Local\Programs\Python\Python37-32\lib\http\server.py", line 143, in <module>
+    class ThreadingHTTPServer(socketserver.ThreadingMixIn, HTTPServer):
+KeyboardInterrupt

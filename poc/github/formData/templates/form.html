@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bug Reporting Form</title>
+    {% load static %}
+    <!--
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <style>
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=email], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=file], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        #description{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="main" style="margin: auto; width: 50%">
+    <div style="text-align: center;">
+        <h1>Bug Reporting Form</h1></div>
+    {% include 'messages.html' %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <label for="username">User Name</label><br>
+            <input type="text"  id="username" name="username" value="{{ username }}"><br>
+
+            <label for="email">Email</label><br>
+            <input type="email" id="email"  name="email" value="{{ email }}"><br>
+
+            <label for="issue_type">Issue Type*</label><br>
+            <select id="issue_type" name="issueType" required>
+                <option style="display:none" value="">Please Choose Issue!</option>
+                <option value="It's a minor annoyance">It's a minor annoyance</option>
+                <option value="It's a problem, but I can still use everything else">It's a problem, but I can still use
+                    everything else
+                </option>
+                <option value="It's a big problem, please fix it as soon as possible">It's a big problem, please fix it
+                    as soon as possible
+                </option>
+            </select>
+<!--
+              <label for="title">Issue Title*</label><br>
+            <input type="text" required id="title" name="title" value="{{ title }}"><br>
+-->
+
+            <label for="description">Description* </label><br>
+            <textarea id="description" name="body" required>{{ description }}</textarea><br>
+
+            <label for="image">Screenshot </label><br>
+            <input type="file" class="form-control" id="image" onchange="encode();" ><br>
+            <textarea class="form-control" hidden id="txt" name="picture_data" rows="4"></textarea>
+            <input type="submit" value="Submit">
+        </form>
+
+</div>
+
+<script>
+    function encode() {
+
+        var selectedfile = document.getElementById("image").files;
+        if (selectedfile.length > 0) {
+            var imageFile = selectedfile[0];
+            var fileReader = new FileReader();
+            fileReader.onload = function (fileLoadedEvent) {
+                var srcData = fileLoadedEvent.target.result;
+                var newImage = document.createElement('img');
+                newImage.src = srcData;
+                document.getElementById("txt").value = srcData;
+            }
+            fileReader.readAsDataURL(imageFile);
+        }
+    }
+</script>
+</body>
+
+</html>

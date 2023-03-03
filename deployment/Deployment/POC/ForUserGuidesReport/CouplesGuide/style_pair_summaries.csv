@@ -1,0 +1,72 @@
+Id,theme_id,style_id_1,style_id_2,section_id,usage,positive,language_id,content
+42,1,-1,-1,0,0,0,165,<p>Generic highlight about theme 1</p>
+43,3,-1,-1,0,0,1,165,<p>Generic highlight about theme 3</p>
+44,4,-1,-1,0,0,0,165,<p>Generic highlight about theme 4</p>
+45,5,-1,-1,0,0,1,165,<p>Generic highlight about theme 5</p>
+46,6,-1,-1,0,0,0,165,<p>Generic highlight about theme 6</p>
+47,7,-1,-1,0,0,1,165,<p>Generic highlight about theme 7</p>
+48,8,-1,-1,0,0,0,165,<p>Generic highlight about theme 8</p>
+49,9,-1,-1,0,0,1,165,<p>Generic highlight about theme 9</p>
+50,10,-1,-1,0,0,0,165,<p>Generic highlight about theme 10</p>
+51,11,-1,-1,0,0,1,165,<p>Generic highlight about theme 11</p>
+52,12,-1,-1,0,0,0,165,<p>Generic highlight about theme 12</p>
+53,13,-1,-1,0,0,1,165,<p>Generic highlight about theme 13</p>
+54,1,-1,-1,0,0,0,245,<p>Generic highlight about theme 1</p>
+55,3,-1,-1,0,0,1,245,<p>Generic highlight about theme 3</p>
+56,4,-1,-1,0,0,0,245,<p>Generic highlight about theme 4</p>
+57,5,-1,-1,0,0,1,245,<p>Generic highlight about theme 5</p>
+58,6,-1,-1,0,0,0,245,<p>Generic highlight about theme 6</p>
+59,7,-1,-1,0,0,1,245,<p>Generic highlight about theme 7</p>
+60,8,-1,-1,0,0,0,245,<p>Generic highlight about theme 8</p>
+61,9,-1,-1,0,0,1,245,<p>Generic highlight about theme 9</p>
+62,10,-1,-1,0,0,0,245,<p>Generic highlight about theme 10</p>
+63,11,-1,-1,0,0,1,245,<p>Generic highlight about theme 11</p>
+64,12,-1,-1,0,0,0,245,<p>Generic highlight about theme 12</p>
+65,13,-1,-1,0,0,1,245,<p>Generic highlight about theme 13</p>
+66,15,-1,-1,0,0,0,165,<p>Generic highlight about Conflict Dynamics</p>
+1,2,2,-1,2,1,0,165,"<p>If you're with someone in altruisms style 2, what we say about Altruism goes into Section 2, Emotional Life.</p>"
+5,2,1,1,4,1,1,165,"<p>As niether of you is in style 202, the Altruism theme gets put into section 4, Dreams and Goals.</p>"
+6,2,1,3,4,1,1,165,"<p>As niether of you is in style 202, the Altruism theme gets put into section 4, Dreams and Goals.</p>"
+9,1,-1,-1,4,1,0,165,<p>Generic intro about theme 1</p>
+10,3,-1,-1,3,1,1,165,<p>Generic intro about theme 3</p>
+11,4,-1,-1,4,1,0,165,<p>Generic intro about theme 4</p>
+12,5,-1,-1,3,1,1,165,<p>Generic intro about theme 5</p>
+13,6,-1,-1,3,1,0,165,<p>Generic intro about theme 6</p>
+14,7,-1,-1,3,1,1,165,<p>Generic intro about theme 7</p>
+15,8,-1,-1,2,1,0,165,<p>Generic intro about theme 8</p>
+16,9,-1,-1,3,1,1,165,<p>Generic intro about theme 9</p>
+17,10,-1,-1,4,1,0,165,<p>Generic intro about theme 10</p>
+18,11,-1,-1,3,1,1,165,<p>Generic intro about theme 11</p>
+19,12,-1,-1,4,1,0,165,<p>Generic intro about theme 12</p>
+20,13,-1,-1,1,1,1,165,<p>Generic intro about theme 13</p>
+33,15,-1,-1,1,1,0,165,<p>Generic intro about Conflict Dynamics</p>
+34,15,4,-1,1,1,0,165,"<p>One of you is Assertive, so listen up!</p>"
+35,15,1,-1,1,1,1,165,"<p>One of you is a harmonizer, so that's great news!</p>"
+2,2,2,1,2,2,0,165,"<p>NAME[2] is pretty messed up, while NAME[1] is very altruistic, so that's going to be a problem in your relatioship.</p>"
+3,2,2,2,2,2,0,165,"<p>You are both pretty messed up, so although you're going to have problems, at least you're the same..</p>"
+4,2,2,3,2,2,0,165,"<p>NAME[2] is pretty messed up, while NAME[3] cares deeply about the people closest to them, so that's going to be a problem in your relatioship.</p>"
+7,2,1,1,4,2,1,165,"<p>You are both in Altruism style 1, so you're going to want to save the world together..</p>"
+8,2,1,3,4,2,1,165,"<p>NAME[1] is in Altruism style 1 and so he_she[1] will want to save the world, while NAME[3] is in Atruism style 3 so he_she[3] will be more focused on the people they are closest to, which will probably include NAME[1].</p>"
+21,1,-1,-1,4,2,0,165,<p>Generic outro about theme 1</p>
+22,3,-1,-1,3,2,1,165,<p>Generic outro about theme 3</p>
+23,4,-1,-1,4,2,0,165,<p>Generic outro about theme 4</p>
+24,5,-1,-1,3,2,1,165,<p>Generic outro about theme 5</p>
+25,6,-1,-1,3,2,0,165,<p>Generic outro about theme 6</p>
+26,7,-1,-1,3,2,1,165,<p>Generic outro about theme 7</p>
+27,8,-1,-1,2,2,0,165,<p>Generic outro about theme 8</p>
+28,9,-1,-1,3,2,1,165,<p>Generic outro about theme 9</p>
+29,10,-1,-1,4,2,0,165,<p>Generic outro about theme 10</p>
+30,11,-1,-1,3,2,1,165,<p>Generic outro about theme 11</p>
+31,12,-1,-1,4,2,0,165,<p>Generic outro about theme 12</p>
+32,13,-1,-1,1,2,1,165,<p>Generic outro about theme 13</p>
+36,15,-1,-1,1,2,1,165,<p>Generic outro about Conflict Dynamics</p>
+37,15,4,-1,1,2,1,165,<p>As NAME[4] is assertive he_sheNAME[4] is going to create a lot of problems in the relationship.</p>
+38,15,1,-1,1,2,0,165,"<p>One of you is a harmonizer, so that's great news!</p>"
+39,15,4,4,1,2,0,165,"<p>As you're both assertive, you're going to have a lot of problems in the relationship.</p>"
+40,15,1,4,1,2,0,165,"<p>As NAME[4] is assertive and NAME[1] is a harmonizer, it's a coin toss as to how your relationship will go - but it's definitely not going to be easy.</p>"
+41,15,1,1,1,2,1,165,"<p>As you're both harmonizers, you're going to have a long and happy relationship.</p>"
+67,15,4,-1,1,2,1,165,<p>As NAME[4] is assertive he_sheNAME[4] is going to create a lot of problems in the relationship.</p>
+68,15,1,-1,1,2,0,165,"<p>NAME[1] is a harmonizer, so that's great news!</p>"
+69,15,4,4,1,2,0,165,"<p>As you're both assertive, you're going to have a lot of problems in the relationship.</p>"
+70,15,1,4,1,2,0,165,"<p>As NAME[4] is assertive and NAME[1] is a harmonizer, it's a coin toss as to how your relationship will go - but it's definitely not going to be easy.</p>"
+71,15,1,1,1,2,1,165,"<p>As you're both harmonizers, you're going to have a long and happy relationship.</p>"

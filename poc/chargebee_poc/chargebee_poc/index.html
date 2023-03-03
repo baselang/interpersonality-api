@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chargebee Form</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>        
+    <script src="https://js.chargebee.com/v2/chargebee.js"></script>
+
+
+        <script type="text/javascript">
+        $(document).ready(function() {         
+                 // console.log("click");
+
+
+        $('#firsttimepayment').click(  function () {             
+            
+            $.ajax({
+                url: 'https://x5lper6q2g.execute-api.us-east-1.amazonaws.com/v1/chargebeefirstpayment',
+                type: 'POST',
+                contentType: "application/json",
+                dataType: "json",
+                
+                headers:{
+                "Access-Control-Allow-Credentials":true,
+                "Access-Control-Allow-Origin":"*"
+                }, 
+                success: function (response) {                    
+                    // console.log(response);                    
+                    window.Chargebee.init({
+                        site: response.site
+                    })
+                    var hostedPageId = response.hosted_page.id
+                    var cbInstance = window.Chargebee.getInstance();
+
+                    cbInstance.openCheckout({
+                        hostedPage: function() {
+                            return new Promise(function(resolve, reject){
+                                resolve(response.hosted_page);
+                            });
+                        },
+                        success: function(response) {
+                            // console.log("Msg Below.");
+                            // console.log(response);
+                            document.getElementById("firsttimepaymentmsg").innerHTML = "Payment done successfully.";    
+                            $("#firsttimepaymentmsg").css("display", "block");
+                        }                        
+                        })                         
+                    
+                },
+                error: function(error){
+                    // console.log(error);
+                    // console.log(error.responseJSON);
+                    // console.log(error.responseJSON.message);
+                    document.getElementById("firsttimepaymentmsg").innerHTML = error.responseJSON.message;
+                    $("#firsttimepaymentmsg").css("display", "block");
+                }
+            });
+        });
+
+        $('#secondtimepayment').click(  function () {         
+           $.ajax({
+               url: 'https://x5lper6q2g.execute-api.us-east-1.amazonaws.com/v1/chargebeeoneclickpayment',
+               type: 'POST',
+               contentType: "application/json",
+               dataType: "json",
+               
+                headers:{
+                "Access-Control-Allow-Credentials":true,
+                "Access-Control-Allow-Origin":"*"
+                }, 
+               success: function (response) {
+                    // console.log(response);
+                    // console.log(response.message);
+                    document.getElementById("secondtimepaymentmsg").innerHTML = response.message;
+                    $("#secondtimepaymentmsg").css("display", "block");
+               },
+                error: function(error){
+                    // console.log(error);
+                    // console.log(error.responseJSON);
+                    // console.log(error.responseJSON.message);
+                    document.getElementById("secondtimepaymentmsg").innerHTML = error.responseJSON.message;
+                    $("#secondtimepaymentmsg").css("display", "block");
+                }
+           });
+       });
+        
+        $('#cancelpayment').click(  function () { 
+           $.ajax({
+               url: 'https://x5lper6q2g.execute-api.us-east-1.amazonaws.com/v1/chargebeecancelpayment',
+               type: 'POST',
+                contentType: "application/json",
+               dataType: "json",
+               
+                headers:{
+                "Access-Control-Allow-Credentials":true,
+                "Access-Control-Allow-Origin":"*"
+                }, 
+               success: function (response) {
+                    // console.log(response);
+                    // console.log(response.message);
+                    document.getElementById("cancelpaymentmsg").innerHTML = response.message;
+                    $("#cancelpaymentmsg").css("display", "block");
+               },
+                error: function(error){
+                    // console.log(error);
+                    // console.log(error.responseJSON);
+                    // console.log(error.responseJSON.message);
+                    document.getElementById("cancelpaymentmsg").innerHTML = error.responseJSON.message;
+                    $("#cancelpaymentmsg").css("display", "block");
+                }
+           });
+       }); 
+        
+
+                });
+    </script> 
+
+    <style>
+
+        input[type=button] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=button]:hover {
+            background-color: #45a049;
+        }
+
+        #maindiv {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<br/><br/><br/>    
+<div id="maindiv" class="main" style="margin: auto; width: 50%">
+    <div style="text-align: center;">
+    <h1>Chargebee Payment Form</h1></div>
+        <form action="" method="post">
+            <div id="firsttimepaymentmsg" align="center" style="display: none;"></div><br>
+            <input id="firsttimepayment" type="button" value="First Time Payment $19">
+            <div id="secondtimepaymentmsg" align="center" style="display: none;"></div><br>
+            <input id="secondtimepayment" type="button" value="Second Time Payment $19">
+            <div id="cancelpaymentmsg" align="center" style="display: none;"></div><br>
+            <input id="cancelpayment" type="button" value="Cancel Payment">
+        </form>
+    </div>
+</body>
+</html>
